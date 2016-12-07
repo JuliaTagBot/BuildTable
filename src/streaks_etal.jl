@@ -16,6 +16,19 @@ function getstreaks(data_pokes)
     streakdata[:TimeEnd] = df[end,:PokeOut]
     return streakdata
   end
+  sort!(data_streaks; cols = [:Date,:MouseID, :StreakNumber])
+  data_streaks[:BlockNumber] = Array(Int64, size(data_streaks,1))
+  block_number = 1
+  for i = 1:size(data_streaks,1)
+      if ((i == 1) || (data_streaks[i, :Protocollo] != data_streaks[i-1, :Protocollo]) ||
+          (data_streaks[i, :Date] != data_streaks[i-1, :Date]) ||
+          (data_streaks[i, :MouseID] != data_streaks[i-1, :MouseID]))
+          block_number = 1
+      else
+          block_number += 1
+      end
+      data_streaks[i, :BlockNumber] = block_number
+  end
   return data_streaks
 end
 

@@ -1,19 +1,19 @@
 function getstreaks(data_pokes)
   data_streaks = by(data_pokes, [:Date,:MouseID, :StreakNumber]) do df
     streakdata = DataFrame()
-    for key in [:Side, :Stim, :BoxID, :RewardProb, :FlippingGamma, :Rewardsize,
-      :Barrier, :Manipulation, :DayNum, :Protocol, :Gen, :ValidDay]
+    for key in [:Side, :Stim, :BoxID, :RewardProb, :FlippingGamma,
+      :DayNum, :Protocollo, :Gen, :ValidDay]
       streakdata[key] = df[1,key]
     end
-    streakdata[:LastReward] = findlast(df[:Rewarded])
+    streakdata[:LastReward] = findlast(df[:Reward])
     streakdata[:NumPokes] = size(df,1)
-    streakdata[:AfterLast] = size(df,1)-findlast(df[:Rewarded])
+    streakdata[:AfterLast] = size(df,1)-findlast(df[:Reward])
     streakdata[:StartHigh] = (df[1,:Side] == df[1,:SideHigh])
     streakdata[:EndHigh] = (df[end,:Side] !== df[end,:SideHigh]) #careful! you may be 1 poke wrong!
-    streakdata[:NumRew] = count(t -> t, df[:Rewarded])
-    streakdata[:NumOms] = count(t -> t, df[:Omission])
-    streakdata[:TimeStart] = df[1,:TimeIn]
-    streakdata[:TimeEnd] = df[end,:TimeOut]
+    streakdata[:NumRew] = count(t -> t, df[:Reward])
+    streakdata[:NumOms] = count(t -> 1-t, df[:Reward])
+    streakdata[:TimeStart] = df[1,:PokeIn]
+    streakdata[:TimeEnd] = df[end,:PokeOut]
     return streakdata
   end
   return data_streaks

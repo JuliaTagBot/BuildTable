@@ -6,4 +6,5 @@ type Gen
 end
 
 # Name of genotype, day of start experiment, mice, valid days:
-#const acc_wt = Gen("acc_wt", 160520, ["AC4";"AC5"], vcat(1:26))
+const vgat = Gen("vgat", 161205,
+["LO1", "L02","L03", "L04","LO5", "L06","L07", "L08", "L09"], vcat(1:26))

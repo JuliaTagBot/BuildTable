@@ -1,6 +1,7 @@
 function load_session_data(filepath)
     sessiondata = DataFrame()
     errortext = ""
+    preprocessingerrorflag = 0
     # Read in the data
     if ~isfile(filepath)
         errortext = "filepath does not exist"
@@ -19,16 +20,17 @@ function getpokes(gen_list)
     pokestot = DataFrame()
     for gen in gen_list
         for session in 1:size(dataLibrary,1)
-            filename = dataLibrary[session,2]
+            filename = string("raw_data/",dataLibrary[session,2])
             if (dataLibrary[session,3] in gen.mice) && (dataLibrary[session,4] >= gen.firstday)
                 filepath = string(foldername, filename)
                 sessiondata, errorflag1, errortext1 = load_session_data(filepath)
-                process_session_data!(sessiondata)
+
                 if (errorflag1 == 1)
                     println(errortext1)
                     println(filepath)
                     continue
                 end
+                process_session_data!(sessiondata)
                 for j in 1:9
                     sessiondata[Symbol(dataLibrary[1,j])] =
                     [dataLibrary[session,j] for i in 1:size(sessiondata,1)]

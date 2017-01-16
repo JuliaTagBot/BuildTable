@@ -1,8 +1,8 @@
-type Gen
-  name
-  firstday
-  mice
-  days
+type Gen{T<:AbstractArray}
+  name::String
+  firstday::Int64
+  mice::Vector{String}
+  days::T
 end
 
 # Name of genotype, day of start experiment, mice, valid days:

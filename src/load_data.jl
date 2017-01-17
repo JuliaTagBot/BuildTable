@@ -12,9 +12,9 @@ function load_session_data(filepath)
     return sessiondata, preprocessingerrorflag, errortext
 end
 
-function getpokes(gen_list)
+function getpokes(gen_list, foldername)
     libraryname = "datalibrary.xlsx"
-    foldername =  string("/Users/",ENV["USER"],"/Google Drive/Flipping/run_task/")
+    #foldername =  string("/Users/",ENV["USER"],"/Google Drive/Flipping/run_task/")
     dataLibrary = readxlsheet(string(foldername,libraryname), "Sheet1");
 
     pokestot = DataFrame()

@@ -53,6 +53,4 @@ function getall(data_pokes::DataFrame)
     return data
 end
 
-function getall{T}(gen_list::Array{T,1})
-    return getall(getpokes(gen_list))
-end
+getall(gen_list, foldername) = getall(getpokes(gen_list, foldername))

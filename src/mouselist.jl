@@ -17,3 +17,9 @@ const photo = Gen("photo", 170114,
 
 const acc = Gen("acc", 170114,
 ["F01", "F02","F03", "F04","F05", "F06", "F07", "F08", "F09","F10"], collect(1:100))
+
+const accblind2 = Gen("accblind2", 170114,
+["B21", "B22","B23", "B24","B25"], collect(1:100))
+
+const accblind4 = Gen("accblind4", 170114,
+["B41", "B42", "B43", "B44","B45"], collect(1:100))

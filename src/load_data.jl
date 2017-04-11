@@ -31,7 +31,7 @@ function getpokes(gen_list, foldername)
                     continue
                 end
                 process_session_data!(sessiondata)
-                for j in 1:9
+                for j in 1:10
                     sessiondata[Symbol(dataLibrary[1,j])] =
                     [dataLibrary[session,j] for i in 1:size(sessiondata,1)]
                 end

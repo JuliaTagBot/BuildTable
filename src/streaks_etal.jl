@@ -16,7 +16,7 @@ function getstreaks(data_pokes)
     data_streaks = by(data_pokes, [:Date,:MouseID, :StreakNumber]) do df
         streakdata = DataFrame()
         for key in [:Side, :Stim, :BoxID, :RewardProb, :FlippingGamma,
-            :DayNum, :Protocollo, :Gen, :ValidDay, :Choice]
+            :DayNum, :Protocollo, :Gen, :ValidDay, :Choice, :Barrier]
             streakdata[key] = df[1,key]
         end
         streakdata[:LastReward] = findlast(df[:Reward])

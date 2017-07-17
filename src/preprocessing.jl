@@ -4,6 +4,7 @@ function process_session_data!(sessiondata)
     # end
     sessiondata[:FlippingGamma] = sessiondata[:GamVec0]+
     (sessiondata[:GamVec1]-sessiondata[:GamVec0]).*sessiondata[:Protocollo]
+    sessiondata[:duration] = sessiondata[:PokeOut]-sessiondata[:PokeIn];
     sessiondata[:RewardProb] = sessiondata[:ProbVec0]+
     (sessiondata[:ProbVec1]-sessiondata[:ProbVec0]).*sessiondata[:Protocollo]
     sessiondata[:StreakNumber] = Array(Int64, size(sessiondata,1))

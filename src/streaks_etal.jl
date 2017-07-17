@@ -13,7 +13,7 @@ end
 
 
 function getstreaks(data_pokes)
-    data_streaks = by(data_pokes, [:Date,:MouseID, :StreakNumber]) do df
+    data_streaks = by(data_pokes, [:Date,:MouseID, :StreakNumber, :StimDay]) do df
         streakdata = DataFrame()
         for key in [:Side, :Stim, :BoxID, :RewardProb, :FlippingGamma,
             :DayNum, :Protocollo, :Gen, :ValidDay, :Choice, :Barrier]
@@ -54,3 +54,28 @@ function getall(data_pokes::DataFrame)
 end
 
 getall(gen_list, foldername) = getall(getpokes(gen_list, foldername))
+
+
+# pokes[:StreakIndex] = 1
+# pokes[:FromReward] = NaN
+# pokes[:ToEnd] = NaN
+# by(pokes, [:Date, :MouseID, :StreakNumber]) do dd
+#     dd[:StreakIndex] = 1:size(dd,1)
+#     dd[:FromReward] = fill(NaN,size(dd,1))
+#     dd[1, :FromReward] = (dd[1, :Rewarded] == "true") ? 0. : NaN
+#     for i in 2:size(dd,1)
+#         if dd[i-1, :Rewarded] == "true"
+#             dd[i, :FromReward] = 1.
+#         else
+#             dd[i, :FromReward] = dd[i-1, :FromReward]+1.
+#         end
+#     end
+#     dd[:ToEnd] = fill(NaN,size(dd,1))
+#     for i in size(dd,1):-1:1
+#         dd[i,:ToEnd] = size(dd,1)-i
+#         if dd[i, :Rewarded] == "true"
+#             break
+#         end
+#     end
+#     return
+# end;

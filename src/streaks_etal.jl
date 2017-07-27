@@ -24,8 +24,8 @@ function getstreaks(data_pokes)
         streakdata[:AfterLast] = size(df,1)-findlast(df[:Reward])
         streakdata[:StartHigh] = (df[1,:Side] == df[1,:SideHigh])
         streakdata[:EndHigh] = (df[end,:Side] == df[end,:SideHigh]) #careful! you may be 1 poke wrong!
-        streakdata[:NumRew] = count(t -> t, df[:Reward])
-        streakdata[:NumOms] = count(t -> 1-t, df[:Reward])
+        streakdata[:NumRew] = count(t -> (t == 1), df[:Reward])
+        streakdata[:NumOms] = count(t -> !(t == 1), df[:Reward])
         streakdata[:TimeStart] = df[1,:PokeIn]
         streakdata[:TimeEnd] = df[end,:PokeOut]
         return streakdata

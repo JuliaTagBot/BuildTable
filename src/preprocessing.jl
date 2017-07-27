@@ -7,7 +7,7 @@ function process_session_data!(sessiondata)
     sessiondata[:duration] = sessiondata[:PokeOut]-sessiondata[:PokeIn];
     sessiondata[:RewardProb] = sessiondata[:ProbVec0]+
     (sessiondata[:ProbVec1]-sessiondata[:ProbVec0]).*sessiondata[:Protocollo]
-    sessiondata[:StreakNumber] = Array(Int64, size(sessiondata,1))
+    sessiondata[:StreakNumber] = Array{Int64}(size(sessiondata,1))
     streak_number = 0
     for i = 1:size(sessiondata,1)
         if (i == 1) || (sessiondata[i, :Side] != sessiondata[i-1, :Side])

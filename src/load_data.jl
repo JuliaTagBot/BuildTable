@@ -8,7 +8,7 @@ function load_session_data(filepath)
         preprocessingerrorflag = 1
         return sessiondata, preprocessingerrorflag, errortext
     end
-    sessiondata = CSV.read(filepath; nullable = false)
+    sessiondata = readtable(filepath)
     return sessiondata, preprocessingerrorflag, errortext
 end
 
